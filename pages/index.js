@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Inbet - Home</title>
+        <title>GambleBee - Home</title>
         <meta name="description" content="Best betting platform" />
         <link rel="icon" href="/logow.png" />
       </Head>
