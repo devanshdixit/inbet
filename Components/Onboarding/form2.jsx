@@ -31,7 +31,7 @@ export default function Form2({ onClick }) {
                 </li>
             </ol>
             <h1 className="dark:text-white text-black mb-6 leading-3 font-extrabold text-2xl">Account details</h1>
-            <form action="#">
+            <form>
                   <div className="grid grid-cols-2 gap-5 my-6">
                       <div>
                           <label for="full-name" className="dark:text-white text-black text-sm mb-2 font-medium block">Full Name</label>
@@ -91,11 +91,11 @@ export default function Form2({ onClick }) {
                       <div onClick={(e)=>{
                         e.preventDefault();
                         onClick("Initial");
-                    }} className="sm:py-3 py-2 text-[#111827] hover:text-primary-600 dark:text-[#9CA3AF] dark:bg-[#1F2937] font-medium text-sm text-center bg-white border-[1px] rounded-lg items-center w-full border-[#E5E7EB] dark:border-[#4B5563] focus:ring-2 dark:focus:ring-offset-gray-800 dark:hover:bg-[#374151] hover:bg-gray-100">Prev: Personal Info</div>
-                      <button onClick={(e)=>{
+                    }} className="hover:cursor-pointer sm:py-3 py-2 text-[#111827] hover:text-primary-600 dark:text-[#9CA3AF] dark:bg-[#1F2937] font-medium text-sm text-center bg-white border-[1px] rounded-lg items-center w-full border-[#E5E7EB] dark:border-[#4B5563] focus:ring-2 dark:focus:ring-offset-gray-800 dark:hover:bg-[#374151] hover:bg-gray-100">Prev: Personal Info</div>
+                      <div onClick={(e)=>{
                         e.preventDefault();
                         onClick("Third");
-                    }}  type="submit" className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg items-center ml-3 font-medium text-center px-5 text-sm">Next: Account Info</button>
+                    }} className="bg-primary-600 hover:cursor-pointer py-3 hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg items-center ml-3 font-medium text-center px-5 text-sm">Next: Account Info</div>
                   </div>
               </form>
         </div>

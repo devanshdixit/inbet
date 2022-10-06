@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Final from "./final";
 import Form1 from "./form1";
 import Form2 from "./form2";
 import Form3 from "./form3";
@@ -68,7 +69,7 @@ export default function Onborading() {
                 </div>
                 <div className="px-8 w-full h-[100vh] sm:w-[42rem] mx-auto flex items-center">
                     {nextForm === 'Initial' ?
-                        <Form1 onClick={(e)=> setNextForm(e)} /> : nextForm === 'Second' ? <Form2 onClick={(e)=> setNextForm(e)} /> : nextForm === 'Third' ? <Form3 onClick={(e)=>setNextForm(e)} /> :  <></>}
+                        <Form1 onClick={(e)=> setNextForm(e)} /> : nextForm === 'Second' ? <Form2 onClick={(e)=> setNextForm(e)} /> : nextForm === 'Third' ? <Form3 onClick={(e)=>setNextForm(e)} /> :  nextForm === 'Final'? <Final onClick={(e)=>setNextForm(e)} /> :  <></>}
                 </div>
             </div>
         </section>
