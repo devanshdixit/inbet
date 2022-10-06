@@ -12,8 +12,8 @@ export default function Home() {
     <>
       <Head>
         <title>Inbet - Home</title>
-        <meta name="description" content="Cricket betting App" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Best betting platform" />
+        <link rel="icon" href="/logow.png" />
       </Head>
       <Header/>
       <Hero />
