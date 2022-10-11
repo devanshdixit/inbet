@@ -11,7 +11,7 @@ export default function Footer() {
                         <img src="/logow.png" className="mr-2 h-8" alt="Inbet Logo" /> :
                         <img src="/logob.png" className="mr-2 h-8" alt="Inbet Logo" />
                     }
-                    GambleBee
+                    Inbet
                 </a>
                 <p class="my-6 text-gray-500 dark:text-gray-400">Open-source library of over 400+ web components and interactive elements built for better web.</p>
                 <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">

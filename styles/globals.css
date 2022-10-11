@@ -60,7 +60,53 @@ input:-webkit-autofill:focus {
     0 0 42px #FFD700,
     0 0 82px #FFD700;
 }
+
+.silverText {
+  color: #fff;
+  font-family: akira;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #C0C0C0,
+    0 0 82px #C0C0C0;
+}
   
+.silverboxshadow{
+  animation: silverpulsate 1.5s infinite alternate;  
+  border: 0.2rem solid #fff;
+  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #C0C0C0,
+            0 0 0.8rem #C0C0C0,
+            0 0 1.8rem #C0C0C0,
+            inset 0 0 1.2rem #C0C0C0; 
+}
+
+
+.bronzeText {
+  color: #fff;
+  font-family: akira;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #967444,
+    0 0 82px #967444;
+}
+  
+.bronzeboxshadow{
+  animation: bronzepulsate 1.5s infinite alternate;  
+  border: 0.2rem solid #fff;
+  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #967444,
+            0 0 0.8rem #967444,
+            0 0 1.8rem #967444,
+            inset 0 0 1.2rem #967444; 
+}
+
+
 .boxshadow {
   animation: pulsate 1.5s infinite alternate;  
   border: 0.2rem solid #fff;
@@ -73,25 +119,58 @@ input:-webkit-autofill:focus {
 }
 
 @keyframes pulsate {
-    
   100% {
-
       text-shadow:
       0 0 4px #FFD700,
       0 0 6px #FFD700,
       0 0 11px #FFD700,
       0 0 19px #FFD700,
       0 0 29px #FFD700;
-  
   }
-  
   0% {
-
     text-shadow:
     0 0 2px #fff,
     0 0 4px #FFD700,
     0 0 6px #FFD700,
     0 0 10px #FFD700,
     0 0 19px #FFD700;
+  }
 }
+
+@keyframes silverpulsate {
+  100% {
+      text-shadow:
+      0 0 4px #C0C0C0,
+      0 0 6px #C0C0C0,
+      0 0 11px #C0C0C0,
+      0 0 19px #C0C0C0,
+      0 0 29px #C0C0C0;
+  }
+  0% {
+    text-shadow:
+    0 0 2px #fff,
+    0 0 4px #C0C0C0,
+    0 0 6px #C0C0C0,
+    0 0 10px #C0C0C0,
+    0 0 19px #C0C0C0;
+  }
+}
+
+@keyframes bronzepulsate {
+  100% {
+      text-shadow:
+      0 0 4px #967444,
+      0 0 6px #967444,
+      0 0 11px #967444,
+      0 0 19px #967444,
+      0 0 29px #967444;
+  }
+  0% {
+    text-shadow:
+    0 0 2px #fff,
+    0 0 4px #967444,
+    0 0 6px #967444,
+    0 0 10px #967444,
+    0 0 19px #967444;
+  }
 }

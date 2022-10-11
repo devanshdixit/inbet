@@ -19,22 +19,19 @@ export default function BetOption() {
                 <div className="py-4 max-w-screen-sm mx-auto">
                     <motion.div whileHover="hover" variants={cardMotion} className="border-[1px] px-6 sm:text-5xl text-4xl justify-between items-center text-center neonText boxshadow my-2 h-40 mx-6  border-gray-600  py-2  rounded-2xl flex">
                         Gold
-                        <motion.span variants={arrowMotion} className="h-20 sm:h-32 sm:w-32 w-20 items-center text-center align-middle flex">
+                        <span className="">1000</span>
+                        {/* <motion.span variants={arrowMotion} className="h-20 sm:h-32 sm:w-32 w-20 items-center text-center align-middle flex">
                             <Image src='/fast-forward.png' alt="" height="100%" width="100%" />
-                        </motion.span>
+                        </motion.span> */}
                     </motion.div>
 
-                    <motion.div whileHover="hover" variants={cardMotion} className="border-[1px] px-6 sm:text-5xl text-4xl justify-between items-center text-center neonText boxshadow my-12 h-40 mx-6  border-gray-600  py-2  rounded-2xl flex">
+                    <motion.div whileHover="hover" variants={cardMotion} className="border-[1px] px-6 sm:text-5xl text-4xl justify-between items-center text-center silverText silverboxshadow my-12 h-40 mx-6  border-gray-600  py-2  rounded-2xl flex">
                         Silver
-                        <motion.span variants={arrowMotion} className="h-20 sm:h-32 sm:w-32 w-20 items-center text-center align-middle flex">
-                            <Image src='/fast-forward.png' alt="" height="100%" width="100%" />
-                        </motion.span>
+                        <span className="">500</span>
                     </motion.div>
-                    <motion.div whileHover="hover" variants={cardMotion} className="border-[1px] px-6 sm:text-5xl text-2xl justify-between items-center text-center neonText boxshadow my-2 h-40 mx-6  border-gray-600  py-2  rounded-2xl flex">
-                        Platinum
-                        <motion.span variants={arrowMotion} className="h-20 sm:h-32 sm:w-32 w-20 items-center text-center align-middle flex">
-                            <Image src='/fast-forward.png' alt="" height="100%" width="100%" />
-                        </motion.span>
+                    <motion.div whileHover="hover" variants={cardMotion} className="border-[1px] px-6 sm:text-5xl text-2xl justify-between items-center text-center bronzeText bronzeboxshadow my-2 h-40 mx-6  border-gray-600  py-2  rounded-2xl flex">
+                        Bronze
+                        <span className="">100</span>
                     </motion.div>
                 </div>
             </div>
