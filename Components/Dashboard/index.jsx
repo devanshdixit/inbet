@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
+import Link from "next/link";
 import Router from "next/router";
 import React from "react";
 import { useAuth } from "../Firebase/authContext";
@@ -45,23 +46,19 @@ export default function Dashboard() {
                                     Edit Profile
                                     {/* <span class="text-gray-400 dark:text-gray-500 text-xs mx-2">42 min ago</span> */}
                                 </a>
-                                <a href="#" class=" border-t border-gray-900 dark:border-gray-100 text-gray-200 dark:text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-900 dark:hover:bg-gray-100 transition duration-150">
-                                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" class="rounded-full h-6 shadow-md inline-block mr-2" />
-                                    Logout
-                                    {/* <span class="text-gray-400 dark:text-gray-500 text-xs mx-2">42 min ago</span> */}
-                                </a>
                             </div>
                         </div>
                         <div class="w-full py-6">
                             <h3 class="font-medium text-white dark:text-gray-900 text-left px-6">Tokens</h3>
                             <div class="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
-                                <a href="#" class=" border-t border-gray-900 dark:border-gray-100 text-gray-200 dark:text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-900 dark:hover:bg-gray-100 transition duration-150">
+                                <Link href="/buytoken">
+                                <div class="hover:cursor-pointer border-t border-gray-900 dark:border-gray-100 text-gray-200 dark:text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-900 dark:hover:bg-gray-100 transition duration-150">
                                     <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" class="rounded-full h-6 shadow-md inline-block mr-2" />
                                     Buy Inbet Tokens
                                     {/* <span class="text-gray-400 dark:text-gray-500 text-xs mx-2">42 min ago</span> */}
-                                </a>
-
-                                <a href="#" class="w-full border-t border-gray-900 dark:border-gray-100 text-gray-200 dark:text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-900 dark:hover:bg-gray-100 transition duration-150">
+                                </div>
+                                </Link>
+                                <a href="#" class=" border-t border-gray-900 dark:border-gray-100 text-gray-200 dark:text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-900 dark:hover:bg-gray-100 transition duration-150">
                                     <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" class="rounded-full h-6 shadow-md inline-block mr-2" />
                                     Redeem Tokens
                                     {/* <span class="text-gray-400 dark:text-gray-500 text-xs mx-2">49 min ago</span> */}
