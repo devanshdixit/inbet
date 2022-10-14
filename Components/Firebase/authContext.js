@@ -3,7 +3,7 @@ import { firebase } from './index'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth } from "./index";
 import Router from 'next/router';
-import { checkUser, createUser } from './database';
+import { checkUser, createUser, getUser } from './database';
 
 const authContext = createContext()
 
@@ -25,11 +25,14 @@ function useProvideAuth() {
   const handleUser = async (rawUser) => {
     if (rawUser) {
       const user = formatUser(rawUser)
-      const res = checkUser(user.uid);
-      console.log(res);
-      await createUser(user.uid, user);
-      setLoading(false)
-      setUser(user)
+      const res = await checkUser(user.uid);
+      if (res) {
+        await createUser(user.uid, user);
+      } else {
+        const data = await getUser(user.uid);
+        setUser(data);
+      }
+      setLoading(false);
       return user
     } else {
       setLoading(false)

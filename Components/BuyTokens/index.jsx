@@ -2,7 +2,7 @@ import Image from "next/image";
 import Router from "next/router";
 import { useState } from "react";
 import { useAuth } from "../Firebase/authContext";
-import { updateUser } from "../Firebase/database";
+import { getUser, updateUser } from "../Firebase/database";
 
 export default function BuyTokens() {
     const {user} = useAuth();
@@ -44,25 +44,25 @@ export default function BuyTokens() {
           order_id: data.id,
           description: "",
           image: "https://inbet.vercel.app/logob.png",
-          handler: function (response) {
+          handler: async function (response) {
             // Validate payment at server - using webhooks is a better idea.
             if (!response) {
                 setShow(true);
             }
-            console.log(response.razorpay_payment_id);
-            console.log(response.razorpay_order_id);
-            console.log(response.razorpay_signature);
-            Router.push("/");
-            updateUser(user.uid,{
+            const userData = await getUser(user.uid);
+            const payment = userData?.payment;
+            await updateUser(user.uid,{
                 token: token,
                 payment: [
-                {
-                    id: response.razorpay_payment_id,
-                    orderId: response.razorpay_order_id,
-                    signature: response.razorpay_signature,
-                }
+                    ...payment,
+                  {
+                      id: response.razorpay_payment_id,
+                      orderId: response.razorpay_order_id,
+                      signature: response.razorpay_signature,
+                  }
                 ]
             });
+            Router.push("/dashboard");
           }
         };
     
