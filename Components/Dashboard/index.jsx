@@ -14,6 +14,7 @@ export default function Dashboard() {
     if (!user) {
         Router.push('/');
     } else {
+        console.log("updating user")
         updateUser();
     }
     },[]);

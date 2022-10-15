@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext, createContext } from 'react'
-import { firebase } from './index'
+import { database, firebase } from './index'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth } from "./index";
 import Router from 'next/router';
 import { checkUser, createUser, getUser } from './database';
+import { doc, onSnapshot } from 'firebase/firestore';
 
 const authContext = createContext()
 
@@ -66,9 +67,11 @@ function useProvideAuth() {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, handleUser)
-    return () => unsubscribe()
-  }, [])
+    const unsubscribe = onAuthStateChanged(auth, handleUser);
+    return () => {
+      unsubscribe();
+    }
+  }, []);
 
   return {
     user,

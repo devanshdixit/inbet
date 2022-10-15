@@ -21,7 +21,6 @@ export async function getUser(uid) {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
         const data = docSnap.data();
-        console.log("Document data:", data);
         return data;
     }   else {
         // doc.data() will be undefined in this case

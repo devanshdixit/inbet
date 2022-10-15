@@ -1,22 +1,34 @@
 import Image from "next/image";
 import Router from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../Components/Firebase/authContext";
-import { setRedeem, updateUser } from "../Components/Firebase/database";
+import { getUser, setRedeem ,updateUser} from "../Components/Firebase/database";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+import Loader from "../Components/Loading";
 
 export default function Redeem() {
-    const { loading, user, signout } = useAuth();
+    const {loading,user} = useAuth();
     const [inr, setInr] = useState(100);
     const [show, setShow] = useState(false);
     const [error, setError] = useState(false);
+    const [userData,setUserData] = useState(user);
     const [loadingState, setLoadingState] = useState(false);
+
+    React.useEffect(()=>{
+        updateUserData();
+    },[]);
+    const updateUserData = async () => {
+        const data = await getUser(user.uid);
+        setUserData(data);
+    }
     const handleClick = async () => {
         setLoadingState(true);
-        if (!loading) {
+        await updateUserData();
+        if (!loading || !loadingState) {
             setError(false);
-            const a = user.token - inr;
+            const a = userData?.token - inr;
+            console.log('remianing',a);
             if (a <= 0) {
                 setLoadingState(false);
                 return setError(true);
@@ -25,15 +37,15 @@ export default function Redeem() {
                 setLoadingState(false);
                 return setError(true);
             }
-            if (user.token >= 100) {
+            if (userData.token >= 100) {
                 console.log('reached');
                 await setRedeem(user.uid, inr);
                 await updateUser(user.uid, {
                     token: a
                 })
-                Router.push('/dashboard');
                 setLoadingState(false);
                 setShow(true);
+                Router.push('/dashboard');
             }
         }
     }
@@ -42,7 +54,7 @@ export default function Redeem() {
             <Header />
             <section class="bg-white dark:bg-gray-900">
                     <div class="items-center py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 min-h-[55vh]">
-                {loadingState || loading ? <h1 className="text-black dark:text-white text-center">Loding...</h1> :
+                {loadingState || loading ? <Loader /> :
                 <>
                         {show && <div className="max-w-md text-center my-4 py-6 px-2 bg-blue-200 border border-primary-400 mx-auto rounded-lg">
                             <h3 className="text-primary-600">Requested Successfuly, The amount will be credited in 5-6 working days!</h3>

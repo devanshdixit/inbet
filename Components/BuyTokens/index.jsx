@@ -3,9 +3,10 @@ import Router from "next/router";
 import { useState } from "react";
 import { useAuth } from "../Firebase/authContext";
 import { getUser, updateUser } from "../Firebase/database";
+import Loader from "../Loading";
 
 export default function BuyTokens() {
-    const {user} = useAuth();
+    const {user,loading} = useAuth();
     const initializeRazorpay = () => {
         return new Promise((resolve) => {
           const script = document.createElement("script");
@@ -49,10 +50,11 @@ export default function BuyTokens() {
             if (!response) {
                 setShow(true);
             }
-            const userData = await getUser(user.uid);
+            const userData = await getUser(user?.uid);
             const payment = userData?.payment;
+            const userToken = userData?.token ? userData?.token : 0;
             await updateUser(user.uid,{
-                token: token,
+                token: token + userToken,
                 payment: [
                     ...payment,
                   {
@@ -62,6 +64,7 @@ export default function BuyTokens() {
                   }
                 ]
             });
+            setLoadingState(false);
             Router.push("/dashboard");
           }
         };
@@ -72,21 +75,25 @@ export default function BuyTokens() {
       const [inr, setInr] = useState(250);
       const [token, setToken] = useState(500);
       const [show, setShow] = useState(false);
+      const [error, setError] = useState(false);
+      const [loadingState, setLoadingState] = useState(false);
     return (
         <section class="bg-white dark:bg-gray-900">
-         
             <div class="items-center py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 min-h-[55vh]">
+             {loading || loadingState ? <Loader />:
+              <>
             {show && <div className="max-w-md text-center my-4 py-6 px-2 bg-red-200 border border-red-400 mx-auto rounded-lg">
                 <h3 className="text-red-600">Payment failed, try again!</h3>
+            </div>}
+            {error && <div className="max-w-md text-center my-4 py-6 px-2 bg-red-200 border border-red-400 mx-auto rounded-lg">
+                <h3 className="text-red-600">Minimum amount should be INR 250 or above </h3>
             </div>}
                 <div className="border py-4 px-8 border-gray-200 dark:border-gray-700 shadow-xl bg-gray-800 max-w-md w-full mx-auto rounded-lg">
                     <h1 className="text-center mx-auto mt-4 text-2xl">Buy Tokens</h1>
                     <div className="pt-6 flex justify-center space-x-4">
                         <input onChange={(e)=>{
-                            if(e.target.value > 500){
                             setToken(e.target.value);
                             setInr(e.target.value / 2);
-                            }
                         }} value={token} type="number" name="inbetToken" id="inbetToken" class="bg-gray-50 max-w-[120px] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Inbet Tokens" required />
                         <span className="h-10 w-10"><Image src="/logob.png" width="100%" height="100%" alt="" /></span>
                     </div>
@@ -95,18 +102,25 @@ export default function BuyTokens() {
                     </div>
                     <div className=" flex justify-center space-x-4">
                         <input onChange={(e)=>{
-                        if(e.target.value > 250){
                             setInr(e.target.value);
                             setToken(e.target.value * 2);
-                        }
                         }} value={inr} type="number" name="inbetToken" id="inbetToken" class="bg-gray-50 max-w-[120px] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Inr currency" required />
                         <span className="h-8 w-8"><Image src="/rupee.png" width="100%" height="100%" alt="" /></span>
                     </div>
                     <div onClick={(e)=>{
-                    e.preventDefault();
-                        makePayment();
+                      e.preventDefault();
+                      setError(false);
+                      if(token < 500){
+                        return setError(true);
+                      }
+                      if(inr < 250){
+                        return setError(true);
+                      }
+                      setLoadingState(true);
+                      makePayment();
                     }} className="bg-primary-600 hover:cursor-pointer text-center mt-8 mb-3 py-2 rounded-lg">Buy Now</div>
                 </div>
+                </>}
             </div>
         </section>
     )
